@@ -77,11 +77,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1793021877,
+          "publishTimestamp": 1793022376,
           "source": {
             "type": "git",
             "url": "https://github.com/xiaofadefa/dsh-server-log-analyzer",
-            "commit": "fcecf110224e94acb8a9e21092449ac9510657c1"
+            "commit": "b90c4454303ee55c63a8153c8deea9fe3290c4e5"
           }
         }
       ]
