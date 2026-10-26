@@ -24,7 +24,8 @@
     "samples",
     "cordis.patch.yml",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md"
   ],
   "keywords": [
     "dsh",
@@ -54,6 +55,10 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "dsh": {
     "bundle": {
