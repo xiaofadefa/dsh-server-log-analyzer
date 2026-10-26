@@ -1,0 +1,37 @@
+{
+  "brand": "lenovo",
+  "source": "示例模板：请用《Lenovo XClarity Controller 事件与消息参考》对应版本替换（XCC 事件码会随固件版本变化，务必标注版本）",
+  "version": "template-2026.01",
+  "codes": {
+    "FQXSPMA": {
+      "rule": "MEM_UCE",
+      "severity": "critical",
+      "meaning": "内存事件族（FQXSPMA0xxx）：按单码语义或文本措辞判定 UCE/CE/训练失败",
+      "action": "先看单码与文本：UCE 立即处置；仅 CE 超阈值则按趋势处理"
+    },
+    "FQXSPPW": {
+      "rule": "PSU_FAIL",
+      "severity": "critical",
+      "meaning": "电源事件族（FQXSPPW0xxx）：电源失效/输入丢失/冗余丢失",
+      "action": "先区分失效与输入丢失：输入丢失查配电，电源失效换件"
+    },
+    "FQXSPUN": {
+      "rule": "FAN_FAIL",
+      "severity": "critical",
+      "meaning": "散热事件族（FQXSPUN0xxx）：风扇失效/温度越限",
+      "action": "记录部件编号；恢复冗余后再做其他维护"
+    },
+    "FQXSPSD": {
+      "rule": "DRIVE_FAIL",
+      "severity": "critical",
+      "meaning": "存储事件族（FQXSPSD0xxx）：硬盘失效/预测性失效/重建",
+      "action": "结合 RAID 状态处理：能用热备就直接换盘"
+    },
+    "FQXSPSE0001M": {
+      "category": "security",
+      "severity": "minor",
+      "meaning": "示例：安全类事件码（TPM/Secure Boot），内置规则未覆盖",
+      "action": "换主板/清 TPM 前确认 BitLocker 密钥托管位置"
+    }
+  }
+}

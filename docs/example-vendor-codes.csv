@@ -1,0 +1,7 @@
+code,meaning,severity,rule,category,action
+MEM0001,Uncorrectable memory error (multi-bit ECC) on the indicated DIMM,critical,MEM_UCE,memory,导出 SEL 留证 → 切业务 → 重启清 MCE → 更换该 DIMM
+MEM0701,Correctable memory error logging limit exceeded,minor,MEM_CE,memory,记录 CE 速率；速率上升才安排更换
+PWR1000,AC lost on the indicated power supply,critical,PSU_INPUT_LOST,power,先查 PDU/UPS；与 OS 非预期重启时间对齐
+PWR1091,示例：手册里有而内置规则未覆盖的事件码,major,,power,按手册描述处置；反复出现则补成正式规则
+DRV0003,Physical disk failure,critical,DRIVE_FAIL,storage,有热备直接换盘重建；重建期间禁止重启
+FAN0000,Fan failed (stalled),critical,FAN_FAIL,thermal,记录 FAN 编号与是否热插拔；尽快换件

@@ -1,0 +1,13 @@
+# dsh-server-log-analyzer bundle patch
+#
+# 一行插件：把「服务器带外/系统日志硬件分析」工具面与技能挂进 profile。
+# 技能默认自动落地到 $DSH_HOME/skills（skill-filesystem 会热发现，不需要重启即出现在技能目录），
+# 工具面随 dsh 进程启动注册（首次安装后需要重启 dsh 才可见）。
+- insert:
+    - id: server-log-analyzer
+      name: 'dsh-server-log-analyzer'
+      config:
+        enabled: true
+        installSkills: true
+        maxFindings: 12
+        reportDir: ''

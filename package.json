@@ -1,0 +1,57 @@
+{
+  "name": "dsh-server-log-analyzer",
+  "version": "1.0.0",
+  "description": "DSH 插件：服务器带外日志（BMC / iDRAC / iLO / iBMC / XCC / IPMI SEL / Redfish）与系统日志的硬件初步分析与巡检",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./engine": "./lib/engine/index.js",
+    "./cli": "./bin/dsh-hwlog.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "dsh-hwlog": "bin/dsh-hwlog.js"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "scripts",
+    "!scripts/__pycache__",
+    "skills",
+    "docs",
+    "data",
+    "samples",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "server",
+    "bmc",
+    "ipmi",
+    "sel",
+    "redfish",
+    "idrac",
+    "ilo",
+    "ibmc",
+    "xcc",
+    "运维",
+    "硬件",
+    "日志分析"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "brand": "dell",
+  "source": "示例模板：请用《Dell Event and Error Message Reference Guide》对应版本替换本文件（按 code 逐条填 meaning/severity/action）",
+  "version": "template-2026.01",
+  "codes": {
+    "MEM0001": {
+      "rule": "MEM_UCE",
+      "severity": "critical",
+      "meaning": "Uncorrectable memory error (multi-bit ECC) on the indicated DIMM",
+      "action": "导出 SEL 留证 → 业务切换 → 重启清 MCE → 更换该 DIMM；同槽位 7 天内 ≥2 次直接判劣化"
+    },
+    "MEM0701": {
+      "rule": "MEM_CE",
+      "severity": "minor",
+      "meaning": "Correctable memory error logging limit exceeded (threshold reached)",
+      "action": "记录 CE 速率（次/天）；速率上升或同 rank 集中才安排更换"
+    },
+    "MEM0702": {
+      "rule": "MEM_TRAINING_FAIL",
+      "severity": "critical",
+      "meaning": "Memory training failure — DIMM disabled or not detected",
+      "action": "查容量差定位被禁用 DIMM → 清 CMOS/NVRAM 重训练 → 换槽复测 → 仍失败换条"
+    },
+    "PWR1000": {
+      "rule": "PSU_INPUT_LOST",
+      "severity": "critical",
+      "meaning": "AC lost on the indicated power supply (input power lost)",
+      "action": "先查 PDU/UPS/空开；与 OS 非预期重启时间对齐；多台同现按机房供电事件处理"
+    },
+    "PWR0004": {
+      "rule": "PSU_REDUNDANCY_LOST",
+      "severity": "major",
+      "meaning": "Power supply redundancy lost",
+      "action": "恢复冗余前禁止单路维护；核对两路 PDU 是否都带电"
+    },
+    "FAN0001": {
+      "rule": "FAN_FAIL",
+      "severity": "critical",
+      "meaning": "Fan failed (stalled / not present)",
+      "action": "记录 FAN 编号与是否热插拔；尽快换件，避免其余风扇连锁老化"
+    },
+    "TMP0118": {
+      "rule": "THERMAL_TEMP_HIGH",
+      "severity": "critical",
+      "meaning": "System inlet temperature upper non-recoverable",
+      "action": "查机房制冷与进风温度（>27℃ 属环境问题）；清灰、恢复风道"
+    },
+    "DRV0002": {
+      "rule": "DRIVE_FAIL",
+      "severity": "critical",
+      "meaning": "Physical disk failure / offline",
+      "action": "有热备直接换盘重建；重建期间禁止重启与压测"
+    },
+    "STO0003": {
+      "rule": "RAID_DEGRADED",
+      "severity": "critical",
+      "meaning": "Virtual disk degraded (RAID lost redundancy)",
+      "action": "先保数据（备份校验）→ 插备盘 → 重建完成前不拔任何盘"
+    },
+    "PWR1091": {
+      "category": "power",
+      "severity": "major",
+      "meaning": "示例：手册里有、内置规则未覆盖的码——靠码表直接扩展，无需改代码",
+      "action": "按手册描述处置；若反复出现，把它补成 rules.js 里的一条正式规则（带跨源关联）"
+    }
+  }
+}

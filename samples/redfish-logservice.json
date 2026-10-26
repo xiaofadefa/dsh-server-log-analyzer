@@ -1,0 +1,77 @@
+{
+  "@odata.type": "#LogService.v1_1_0.LogService",
+  "Name": "SEL",
+  "Members": [
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/1",
+      "EntryType": "SEL",
+      "Severity": "Critical",
+      "Created": "2026-08-16T09:00:05+08:00",
+      "MessageId": "Base.1.12.SensorEvent",
+      "SensorType": "Memory",
+      "SensorNumber": 18,
+      "Message": "Uncorrectable ECC error detected at DIMM A1 (multi-bit, UCE)"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/2",
+      "EntryType": "SEL",
+      "Severity": "Warning",
+      "Created": "2026-08-16T09:00:08+08:00",
+      "MessageId": "Base.1.12.SensorEvent",
+      "SensorType": "Memory",
+      "SensorNumber": 19,
+      "Message": "Correctable memory error threshold exceeded on DIMM B1 (1024 counts)"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/3",
+      "EntryType": "SEL",
+      "Severity": "Critical",
+      "Created": "2026-08-16T09:20:41+08:00",
+      "MessageId": "Base.1.12.ResourceError",
+      "SensorType": "Power Supply",
+      "SensorNumber": 81,
+      "Message": "Power supply 2 failure detected (PSU2 fault, redundancy lost)"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/4",
+      "EntryType": "SEL",
+      "Severity": "Critical",
+      "Created": "2026-08-16T09:21:02+08:00",
+      "MessageId": "Base.1.12.ResourceError",
+      "SensorType": "Fan",
+      "SensorNumber": 90,
+      "Message": "Fan 3 is not present or failed (tachometer stopped)"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/5",
+      "EntryType": "SEL",
+      "Severity": "Critical",
+      "Created": "2026-08-16T09:31:12+08:00",
+      "MessageId": "Base.1.12.ResourceError",
+      "SensorType": "Drive",
+      "SensorNumber": 45,
+      "Message": "Drive 5 failed, RAID Virtual Drive 0 degraded"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/6",
+      "EntryType": "SEL",
+      "Severity": "Warning",
+      "Created": "2026-08-16T09:35:00+08:00",
+      "MessageId": "Base.1.12.ResourceError",
+      "SensorType": "Drive",
+      "SensorNumber": 46,
+      "Message": "Predictive failure reported on drive 7 (SMART threshold exceeded)"
+    },
+    {
+      "@odata.id": "/redfish/v1/Systems/1/LogServices/SEL/Entries/7",
+      "EntryType": "SEL",
+      "Severity": "Critical",
+      "Created": "2026-08-19T03:14:02+08:00",
+      "MessageId": "Base.1.12.SensorEvent",
+      "SensorType": "Power Supply",
+      "SensorNumber": 82,
+      "Message": "AC lost on power supply 1 (input power lost, system powered off)"
+    }
+  ],
+  "Members@odata.count": 7
+}

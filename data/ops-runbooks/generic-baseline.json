@@ -1,0 +1,180 @@
+{
+  "brand": "generic",
+  "product": "通用硬件取证基线",
+  "source": "dsh-server-log-analyzer 内置运维操作基线（作者撰写，非手册原文）",
+  "version": "template-2026.01",
+  "entries": [
+    {
+      "id": "cmd-sel-export",
+      "kind": "command",
+      "title": "导出带外事件日志（SEL / 生命周期 / IML）",
+      "category": "firmware",
+      "symptoms": ["任何硬件故障的第一步取证", "进不去 OS", "需要留证"],
+      "commands": [
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sel elist > sel.log",
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sel list > sel-list.log",
+        "racadm getsel -o > dell-sel.log        # Dell iDRAC",
+        "ipmcget -d sel -v list > ibmc-sel.log  # 华为 iBMC"
+      ],
+      "steps": [],
+      "notes": "每次故障先导这一份：本工具的分析都建立在它之上；导出后立刻用 hwlog_analyze 跑一遍。"
+    },
+    {
+      "id": "cmd-raid-forensic",
+      "kind": "command",
+      "title": "RAID 卡取证三连（状态 / 控制器事件 / TTY 日志）",
+      "category": "raid",
+      "symptoms": ["RAID 降级", "硬盘掉盘", "换卡换盘后配置丢失", "存储侧问题定责"],
+      "commands": [
+        "storcli64 /c0 show all > raid-all.log",
+        "storcli64 /c0 show events > raid-events.log",
+        "storcli64 /c0 show termlog > raid-tty.log",
+        "storcli64 /c0 show preservedCache",
+        "MegaCli -AdpEventLog -GetEvents -f raid-events.log -aALL   # 老版 MegaCli 环境"
+      ],
+      "steps": [],
+      "notes": "进不去 OS 时改用 RAID 卡管理界面（UEFI/HII → Controller Management）的 Save Controller Events / Save TTY Log。"
+    },
+    {
+      "id": "cmd-memory-uce",
+      "kind": "command",
+      "title": "内存 UCE 取证与换条前确认",
+      "category": "memory",
+      "symptoms": ["内存不可纠正错误 UCE", "MEM0001 / FQXSPMA 告警", "整机重启"],
+      "commands": [
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sel elist | grep -i mem",
+        "dmidecode -t memory > dimm-map.log",
+        "mcelog --client 2>/dev/null || journalctl -k | grep -i 'machine check'"
+      ],
+      "steps": [
+        "从 SEL 取出故障内存的槽位（如 DIMM B1）与时间戳",
+        "用 dmidecode 确认该槽位物理位置与容量/厂商",
+        "与 OS 侧 mcelog/内核日志时间对齐，确认同一次事件",
+        "换条前记录：槽位、型号、批次；换后观察 CE 计数是否回落"
+      ],
+      "notes": "UCE 必须换条；CE 看速率（次/天）上升趋势再换，避免盲目更换。"
+    },
+    {
+      "id": "cmd-disk-smart",
+      "kind": "command",
+      "title": "硬盘健康取证（SMART + RAID 侧状态）",
+      "category": "storage",
+      "symptoms": ["硬盘预测失效", "掉盘", "IO 错误", "重建"],
+      "commands": [
+        "smartctl -x /dev/sdX > smart-sdX.log",
+        "smartctl --scan",
+        "storcli64 /c0/eall/sall show all | grep -iE 'media|other|predictive|state'",
+        "nvme smart-log /dev/nvme0"
+      ],
+      "steps": [
+        "看 Reallocated_Sector_Ct / Current_Pending_Sector / Media Error Count 是否增长",
+        "确认盘是否在阵列中（直通盘 vs 阵列盘），RAID0/单盘无冗余 → 先保数据",
+        "预测失效盘安排更换；换盘前确认槽位，避免拔错盘导致阵列失效"
+      ],
+      "notes": "重建期间禁止重启、压测、固件升级。"
+    },
+    {
+      "id": "cmd-power-input",
+      "kind": "command",
+      "title": "供电侧取证（判断是机房还是服务器）",
+      "category": "power",
+      "symptoms": ["电源输入丢失", "整机非预期掉电", "一批机器同时宕机"],
+      "commands": [
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sel elist | grep -iE 'power|psu|ac lost'",
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sdr type 'Power Supply'",
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sensor | grep -iE 'psu|volt'"
+      ],
+      "steps": [
+        "确认是单机还是批量（批量 → 先查 PDU/UPS/空开，不是服务器故障）",
+        "单机看是输入丢失还是电源模块自身失效（Redundancy Lost 单独记一条）",
+        "冗余未恢复前禁止对另一路做维护操作"
+      ],
+      "notes": "输入丢失（AC Lost）属供电侧事件，别按服务器故障走换件流程。"
+    },
+    {
+      "id": "cmd-thermal-check",
+      "kind": "command",
+      "title": "散热与温度读数核对（清灰/换风扇前）",
+      "category": "thermal",
+      "symptoms": ["温度告警", "风扇转速异常", "CPU 降频"],
+      "commands": [
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sdr type Temperature",
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sdr type Fan",
+        "ipmitool -I lanplus -H BMC_IP -U USER -P PASS sensor | grep -iE 'fan|temp'"
+      ],
+      "steps": [
+        "先看进风温度：>27℃ 属机房制冷问题，不是服务器故障",
+        "确认风扇是否满配、导风罩是否在位（缺风扇会触发转速补偿与告警）",
+        "单风扇失效才走换件；整机温度普涨先查机房与滤网"
+      ],
+      "notes": "风扇与温度告警常同时出现，先定因后换件。"
+    },
+    {
+      "id": "cmd-pcie-aer",
+      "kind": "command",
+      "title": "PCIe / 网卡侧取证（AER 与链路错误）",
+      "category": "pcie",
+      "symptoms": ["PCIe AER 报错", "网卡丢包/链路降速", "插卡识别不到"],
+      "commands": [
+        "lspci -vvv > lspci-vvv.log",
+        "dmesg | grep -iE 'aer|pcieport|corrected|fatal' > aer.log",
+        "ethtool -S ethX | grep -iE 'err|drop|crc'",
+        "ethtool ethX | grep -i speed"
+      ],
+      "steps": [
+        "从 BMC 的 PCIe 告警里拿 BDF（Bus/Dev/Func）与插槽号",
+        "按插槽定位卡与 riser：重插 → 换槽 → 升级卡固件 → 换卡 → 最后才主板",
+        "CE 类（可纠正）多为链路裕量问题；UE/Fatal 才需要立即处置"
+      ],
+      "notes": "升级固件与驱动要成对，生产环境先切流量。"
+    },
+    {
+      "id": "ui-bmc-log-export",
+      "kind": "ui",
+      "title": "各品牌 BMC 网页导出日志的菜单路径",
+      "category": "firmware",
+      "symptoms": ["只能用网页取日志", "进不去 OS", "要交厂商支持"],
+      "commands": [],
+      "steps": [
+        "Dell iDRAC：维护 → 系统事件日志 → 保存/导出（另可 维护 → 生命周期日志 导出）",
+        "HPE iLO：信息 → 集成管理日志 → 保存（另有 信息 → 系统信息、Active Health System 下载）",
+        "联想 XCC：BMC 配置 → 日志 → 系统事件日志/审计日志 导出；服务 → 下载服务数据",
+        "浪潮 BMC：日志和告警 → 一键收集日志（含 SEL/IDL）；IDL 日志 → 下载日志",
+        "华为 iBMC：信息 → 系统信息 → 日志 → 一键收集；或 维护 → 日志 → 下载"
+      ],
+      "notes": "一键收集包里往往同时含 SEL、传感器读数与 IDL/IML，直接给本工具即可（zip 会自动展开）。"
+    },
+    {
+      "id": "check-no-os-forensic",
+      "kind": "check",
+      "title": "进不去 OS 时的最小取证清单",
+      "category": "os",
+      "symptoms": ["无法登录 OS", "只拿到带外日志", "需要证明业务影响"],
+      "commands": [],
+      "steps": [
+        "BMC：SEL/IML/IDL/生命周期日志（任一种）导出",
+        "BMC：当前告警页 + 传感器页（温度/风扇/电压读数）截图或复制文本",
+        "BMC：一键收集日志（最全，含上述所有内容）",
+        "网络侧：确认带外 IP 可达、SOL/串口是否也进不去（判断是 OS 挂还是整机挂）",
+        "记录时间线：最后一次正常业务时间、告警首次出现时间"
+      ],
+      "notes": "纯带外输入时本工具会明确标注「硬件定性成立、业务影响需另证」（CR_BMC_ONLY），别把带外结论直接当业务结论。"
+    },
+    {
+      "id": "cmd-firmware-inventory",
+      "kind": "command",
+      "title": "固件与配置版本清单（换件/报修前留档）",
+      "category": "firmware",
+      "symptoms": ["换件前留档", "报修", "升级前基线"],
+      "commands": [
+        "racadm getversion -l -f version.log      # Dell",
+        "ipmcget -d version -v list               # 华为 iBMC",
+        "OneCli/Sum 或 iLO REST：ilorest login; ilorest get --selector Systems",
+        "dmidecode -t bios > bios.log",
+        "dmidecode -t system > system.log"
+      ],
+      "steps": [],
+      "notes": "换件与报修时厂商首先问版本；升级前也要留一份，便于回滚比对。"
+    }
+  ]
+}
