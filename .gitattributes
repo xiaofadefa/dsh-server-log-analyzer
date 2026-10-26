@@ -1,0 +1,12 @@
+# 仓库内统一用 LF，避免 Windows 上反复出现 CRLF 警告与跨平台 diff 噪音
+* text=auto eol=lf
+
+# PowerShell 脚本在 Windows 上按 CRLF 检出更顺手
+*.ps1 text eol=crlf
+
+# 二进制样例：不要做任何换行转换
+*.bin binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary

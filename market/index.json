@@ -49,7 +49,11 @@
         "en": "BMC/IPMI/iDRAC/iLO hardware log triage: rules, scoring, reports, baselines",
         "zh": "DSH 插件：服务器带外日志（BMC / iDRAC / iLO / iBMC / XCC / IPMI SEL / Redfish）与系统日志的硬件初步分析与巡检"
       },
-      "author": "YG",
+      "author": "xiaofadefa",
+      "homepage": "https://github.com/xiaofadefa/dsh-server-log-analyzer#readme",
+      "repository": {
+        "url": "https://github.com/xiaofadefa/dsh-server-log-analyzer"
+      },
       "metadata": {
         "category": "observability",
         "keywords": [
@@ -73,7 +77,7 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1793018573,
+          "publishTimestamp": 1793018988,
           "source": {
             "type": "npm"
           }
