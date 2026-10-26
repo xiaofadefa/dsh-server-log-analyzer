@@ -29,6 +29,7 @@ Desktop.ini
 *.bak
 *.tmp
 
-# 例外：samples/ 下的日志样例是测试资产，必须入库
+# 例外：samples/ 下的日志/收集包样例是测试资产，必须入库
 !samples/*.log
 !samples/**/*.log
+!samples/*.zip
