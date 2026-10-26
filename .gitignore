@@ -28,3 +28,7 @@ Desktop.ini
 *.log
 *.bak
 *.tmp
+
+# 例外：samples/ 下的日志样例是测试资产，必须入库
+!samples/*.log
+!samples/**/*.log
