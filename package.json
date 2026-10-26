@@ -1,6 +1,6 @@
 {
   "name": "dsh-server-log-analyzer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "DSH 插件：服务器带外日志（BMC / iDRAC / iLO / iBMC / XCC / IPMI SEL / Redfish）与系统日志的硬件初步分析与巡检",
   "type": "module",
   "main": "lib/index.js",
