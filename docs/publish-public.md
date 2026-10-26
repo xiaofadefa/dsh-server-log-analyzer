@@ -124,9 +124,17 @@ node scripts/make-market-index.mjs --source npm --author YG `
 node scripts/make-market-index.mjs --source git --author YG
 ```
 
-2. 托管：任选一个 https 静态地址（GitHub Pages / 自己的对象存储 / 反代到内网都行）。
-   例：把 `market/` 提交进 `gh-pages`，最终 URL 形如
-   `https://OWNER.github.io/dsh-server-log-analyzer/market/index.json`
+2. 托管：任选一个 https 静态地址。**首选 jsDelivr（零配置，仓库 public 即可，不用开 Pages）**：
+
+   ```
+   https://cdn.jsdelivr.net/gh/xiaofadefa/dsh-server-log-analyzer@main/market/index.json
+   ```
+
+   实测 200、`application/json`、无重定向。`@main` 有 CDN 缓存（改索引后可能滞后十几分钟）；
+   要"立刻生效"就把 `@main` 换成某个 commit SHA：`...@9ed8193/market/index.json`。
+
+   备选：GitHub Pages（把 `market/` 推到 `gh-pages`，Settings → Pages → Source 选 *Deploy from a branch* → `gh-pages` / `root`），
+   得到 `https://xiaofadefa.github.io/dsh-server-log-analyzer/index.json`；或自己的对象存储 / 反代。
 3. 让对方打开：**插件 → 发现 → 添加索引源**，粘贴上面的 URL。
    注意 Host 校验要求：`http:`/`https:`、**不含账号密码、不含 `?` 和 `#`、不跟随重定向**（要跳转就填最终地址）。
 
