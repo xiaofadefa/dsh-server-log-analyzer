@@ -150,23 +150,28 @@ node scripts/make-market-index.mjs --source git --author YG
 
 做法：fork → 在 `data/plugins.json` 的 `plugins` 数组加一条 → 本地跑 `node scripts/validate.mjs && node scripts/render.mjs` → 提 PR（CI 跑同样两条）。
 
-可直接用的条目（把 `OWNER` 和日期换成实际值）：
+可直接用的条目（已按真实仓库填好；`lastVerified` 记得改成提交当天）：
 
 ```json
 {
   "name": "dsh-server-log-analyzer",
-  "repo": "OWNER/dsh-server-log-analyzer",
-  "npm": "dsh-server-log-analyzer",
-  "description": "Server hardware log triage for DSH: BMC/IPMI/iDRAC/iLO SEL parsing, grading, reports and baselines.",
+  "repo": "xiaofadefa/dsh-server-log-analyzer",
+  "description": "Server hardware log triage: BMC/IPMI SEL, iDRAC/iLO/iBMC/XCC parsing, rule-based grading, reports and baselines.",
   "category": "bundle",
   "tags": ["observability", "capabilities"],
   "added": "2026-10-26",
   "lastVerified": "2026-10-26",
   "verifiedAgainst": "0.1.0-rc.6",
-  "status": "unverified",
+  "status": "verified",
   "evidence": "package.json#dsh.bundle"
 }
 ```
+
+> 已验证的安装路径：`dsh plugin --profile headless add github:xiaofadefa/dsh-server-log-analyzer`
+> 之后 `dsh --profile headless --dump-config` 退出码 0 且配置树里出现 `id: server-log-analyzer`。
+>
+> **不要**在 npm 包真正发布前往条目里加 `"npm"` 字段：注册表的 `npm-check` 会调用 registry.npmjs.org 校验，
+> 404 就把该字段摘掉并塞进 `data/unpublished.json`。等 `npm publish` 成功后再补这一行。
 
 门槛（摘自其 CONTRIBUTING，逐条对照本插件）：
 
