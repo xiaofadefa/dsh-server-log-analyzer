@@ -1,0 +1,10 @@
+iBMC Event Log — FusionServer 2288H V5
+Product Name: FusionServer 2288H V5
+Serial Number: 2102312ABC0012
+iBMC Firmware Version: 3.68
+2026-08-16 09:00:05 [Critical] Memory uncorrectable ECC error (UCE) detected at DIMM B1
+2026-08-16 09:00:06 [Warning] Memory correctable error count exceeded threshold at DIMM C1
+2026-08-16 09:20:41 [Critical] Power supply unit 2 failure detected
+2026-08-16 09:21:02 [Critical] Fan 3 failure detected
+2026-08-19 03:14:02 [Critical] Power input lost, system powered off
+2026-08-19 03:20:00 [Info] Firmware update completed, iBMC 3.68

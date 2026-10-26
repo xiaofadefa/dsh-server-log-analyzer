@@ -1,0 +1,9 @@
+XCC Event Log — ThinkSystem SR650
+Machine Model: ThinkSystem SR650
+Serial Number: J300ABCD
+XCC Firmware Version: 3.10
+2026-08-16 09:00:05 FQXSPMA0011M Memory DIMM A1 uncorrectable error detected (UCE)
+2026-08-16 09:20:41 FQXSPPW0003M Power supply redundancy lost
+2026-08-16 09:21:02 FQXSPUN0005M Fan 3 failure detected
+2026-08-16 09:40:12 FQXSPBR0001M Chassis intrusion detected
+2026-08-16 10:02:11 FQXSPBR0002N XCC reset detected after firmware update

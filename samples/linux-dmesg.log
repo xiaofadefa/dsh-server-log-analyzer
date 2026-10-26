@@ -1,0 +1,10 @@
+[    0.000000] Linux version 5.15.0-101-generic (buildd@lcy02) (gcc 11.2.0) #111-Ubuntu SMP
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-5.15.0-101-generic root=/dev/md0 ro quiet
+[    2.114533] EDAC MC0: Giving out device to module sb_edac.c controller Sandy Bridge ECC
+[  123.456789] mce: [Hardware Error]: CPU 0: Machine Check Exception: 5 Bank 4
+[  123.567890] EDAC MC0: 1 UE row 3 label "DIMM_C1" Uncorrectable error detected
+[  124.000123] lpfc 0000:5e:00.0: HBA PHY error: invalid DWORD count 3, link reset
+[  124.100456] pcieport: AER: Corrected error received: 0000:3b:00.0
+[  125.200789] sd 0:0:5:0: [sdf] DISK IO error: I/O error, dev sdf, sector 987654
+[  126.300111] nvme0n1: I/O error, resetting controller
+[  127.400222] sd 0:0:6:0: [sdg] FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK

@@ -349,12 +349,12 @@ dsh-server-log-analyzer/
 │   ├── server-hw-log-triage/     # 硬件日志初判流程
 │   ├── bmc-log-collection/       # 各品牌带外/OS 采集速查
 │   └── hardware-fault-playbook/  # 部件级处置手册（阈值/换件条件/证据保全）
-├── samples/                  # 15 份样例（含 GBK 中文 / HTML 导出 / zip 一键收集包 / 二进制 SEL）
+├── samples/                  # 17 份样例（含 GBK 中文 / HTML 导出 / zip 一键收集包 / 二进制 SEL）
 ├── scripts/                  # 手册工具链：inspect-manual.py（侦察）/ extract-vendor-codes.py（抽码）/ codes-postprocess.mjs（入库）
 ├── data/vendor-codes/        # 码表（数据驱动）：厂商手册导入这里的格式，改手册不用改代码
 ├── docs/vendor-codes.md      # 品牌事件码与日志形态速查
 ├── docs/example-vendor-codes.csv  # 手册导出 → 码表 的示例表格
-└── test/run-tests.mjs        # 33 组自测（含只有带外四形态、手册码表）
+└── test/run-tests.mjs        # 29 组自测（含只有带外四形态、手册码表、浪潮 IDL）
 ```
 
 ---
@@ -362,10 +362,14 @@ dsh-server-log-analyzer/
 ## 九、自测
 
 ```bash
-node --test test/run-tests.mjs test/plugin-registration.mjs   # 34 组断言（含"只有带外"四形态、手册码表、浪潮 IDL）
+node --test test/run-tests.mjs test/plugin-registration.mjs   # 29 组断言（含"只有带外"四形态、手册码表、浪潮 IDL）
 node bin/dsh-hwlog.js doctor       # 插件与技能状态自检
 node bin/dsh-hwlog.js samples      # 拿样例跑一份完整报告
 ```
 
-> `samples/` 里是**故意造得很糟**的机器日志（内存 UCE + 电源失效 + 风扇停转 + RAID 降级 + 掉电重启），
+> `samples/` 里的 17 份样例是**合成的**（虚构主机名、槽位、时间，不含任何真实生产环境信息），
+> 且**故意造得很糟**（内存 UCE + 电源失效 + 风扇停转 + RAID 降级 + 掉电重启），
 > 所以样例集评分是 D 级 —— 这不是误报，是样例本身就这样。
+>
+> 样例属于测试资产：若被误删，`node test/run-tests.mjs` 会**点名缺哪几个并 skip 依赖它们的断言**（不是整套红掉），
+> 用 `git checkout -- samples` 恢复即可。

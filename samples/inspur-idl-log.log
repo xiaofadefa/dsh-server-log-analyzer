@@ -1,0 +1,10 @@
+浪潮 BMC IDL 故障诊断日志（Inspur NF5280M6, BMC 6.32.00）
+2026-08-16T09:00:05 | Critical | MEMORY | Assert | 0200010000010C01 | Memory uncorrectable ECC error at DIMM B1
+2026-08-16T09:20:41 | Critical | PSU | Assert | 0200010000010801 | 电源模块 PSU2 失效（未在位）
+2026-08-16T09:21:02 | Critical | FAN | Assert | 0200010000010401 | 风扇3 失效（停转）
+2026-08-16T09:31:12 | Critical | DISK | Assert | 0200010000010D01 | 硬盘4 故障，阵列降级
+2026-08-18T10:02:11 | Warning | PSU | Assert | 0200010000010802 | PSU1 失效
+2026-08-18T10:05:00 | Info | PCIE | Assert | 0200010000010E01 | PCIe AER corrected error on slot 3
+2026-08-19T03:14:02 | Critical | MEMORY | Assert | 0200010000010C01 | Memory uncorrectable ECC error at DIMM D1
+2026-08-19T03:20:00 | Info | MEMORY | Deassert | 0200010000010C01 | Memory uncorrectable ECC error at DIMM D1 故障解除
+2026-08-19T03:25:00 | Warning | CPU | Assert | 0200030000010401 | CPU1 Temp reading 78 higher than threshold 70

@@ -1,0 +1,14 @@
+Aug 16 09:00:00 node01 systemd[1]: Started Session 12 of user root.
+Aug 16 09:00:01 node01 sshd[2201]: Accepted password for root from 192.0.2.10 port 50122 ssh2
+Aug 16 09:00:02 node01 CRON[2455]: (root) CMD (/usr/sbin/logrotate /etc/logrotate.conf)
+Aug 16 09:00:03 node01 systemd-logind[998]: New session 12 of user root.
+Aug 16 09:00:04 node01 kernel: mce: [Hardware Error]: Machine check events logged
+Aug 16 09:00:05 node01 kernel: EDAC MC0: 1 CE row 1 label "DIMM_A1" Correctable error
+Aug 16 09:00:06 node01 kernel: EDAC MC1: 1 UE row 2 label "DIMM_B1" Uncorrectable error
+Aug 16 09:00:07 node01 kernel: pcieport: AER: Uncorrected (Fatal) error received from 0000:65:00.0
+Aug 16 09:00:08 node01 kernel: eth2: hardware error detected, resetting NIC
+Aug 16 09:00:09 node01 kernel: md0: one mirror is degraded, array needs attention
+Aug 16 09:00:10 node01 kernel: sdg: I/O error, dev sdg, sector 123456 op 0x0
+Aug 16 09:00:11 node01 kernel: Kernel panic - not syncing: unrecoverable system error
+Aug 16 09:00:12 node01 ntpd[1180]: Soliciting pool server 192.0.2.123
+Aug 16 09:00:13 node01 kubelet[3011]: I0816 09:00:13.120000  3011 kubelet.go:2419] SyncLoop (housekeeping)

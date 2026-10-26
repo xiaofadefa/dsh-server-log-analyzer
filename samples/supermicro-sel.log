@@ -1,0 +1,6 @@
+Supermicro IPMI SEL (X11DPH-T, BMC 01.73)
+1 | 08/16/2026 | 09:00:05 | Memory | Memory | Uncorrectable ECC error at DIMM E1 | Asserted
+2 | 08/16/2026 | 09:20:41 | Power Supply 1 | Power Supply | Power supply failure detected | Asserted
+3 | 08/16/2026 | 09:21:02 | Fan 2 | Fan | Fan speed lower non-recoverable | Asserted
+4 | 08/16/2026 | 09:40:12 | Chassis | Chassis | Chassis intrusion detected | Asserted
+5 | 08/16/2026 | 09:50:00 | Event Log | Event Log | SEL full, events overwritten | Asserted

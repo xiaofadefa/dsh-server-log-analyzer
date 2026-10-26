@@ -1,0 +1,17 @@
+=== smartctl 7.4 / storcli 007.3103 (PERC H740P) ===
+CLI Version = 007.3103.0000.0000
+Controller = 0
+Product Name = PERC H740P
+VD0 Properties : State = Degraded
+VD0 : Rebuild in progress ( 37 % )
+PD 8:4 : State = Failed ( drive failure )
+PD 8:5 : State = Unconfigured Good ( Foreign Configuration present )
+Preserved Cache : Yes ( VD 0 )
+Patrol Read : In progress
+SMART Attributes Data Structure revision number 16
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       24
+187 Reported_Uncorrect      0x0032   100   100   000    Old_age   Always       -       12
+SMART overall-health self-assessment test result: FAILED!
+SMART Predictive Failure: predictive failure predicted on drive 7
+PHY 3 : invalid DWORD count 12, error rate high

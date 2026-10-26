@@ -1,0 +1,6 @@
+iBMC 告警日志 (TaiShan 2280, iBMC 3.68)
+2026-08-16 09:00:05 ALM-0x080000C1 PCIe card CPU severe error detected
+2026-08-16 09:00:08 ALM-0x080000D1 PCIe NIC severe error detected
+2026-08-16 09:00:11 ALM-0x080000DD PCIe card temperature severe error
+2026-08-16 09:00:14 ALM-0x12000013 Inlet temperature reading failed
+2026-08-16 09:00:17 ALM-0x2C000007 System abnormal power off

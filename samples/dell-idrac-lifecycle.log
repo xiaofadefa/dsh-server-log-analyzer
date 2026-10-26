@@ -1,0 +1,15 @@
+iDRAC Lifecycle Log — PowerEdge R750
+Product Name: PowerEdge R750
+System BIOS Version: 1.15.2
+iDRAC Firmware Version: 7.10.30.00
+Serial Number: ABCD123
+Host Name: dell-node01
+2026-08-16 09:00:05.402 [Critical] [MEM0001] Memory device at DIMM_A1 is disabled: Uncorrectable ECC error detected
+2026-08-16 09:00:08.117 [Warning] [MEM0701] Correctable memory error logging limit exceeded at DIMM_B1
+2026-08-16 09:20:41.335 [Critical] [PWR0000] Power Supply 2 failure detected
+2026-08-16 09:21:02.900 [Critical] [FAN0001] Fan 3 failure detected (stalled)
+2026-08-16 09:22:03.041 [Critical] [CPU0000] CPU 1 Machine Check Exception (IERR) detected
+2026-08-16 09:31:12.770 [Critical] [DRV0002] Drive 5 failure detected
+2026-08-19 03:14:02.512 [Critical] [PWR1000] AC lost on Power Supply 1
+2026-08-19 03:14:30.008 [Warning] [TMP0118] System inlet temperature upper non-recoverable, 31 C
+2026-08-19 03:20:00.100 [Info] [FW0001] Firmware update completed: iDRAC 7.10.30.00

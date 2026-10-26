@@ -1,0 +1,7 @@
+浪潮 Inspur BMC SEL 导出（NF5280M6, BMC 6.32.00）
+Serial Number: 220800A12345
+2026-08-16 09:00:05 [Critical] Memory uncorrectable ECC error at DIMM B1
+2026-08-16 09:20:41 [Critical] Power supply unit 1 failure detected
+2026-08-16 09:21:02 [Critical] Fan 2 failure detected
+2026-08-16 09:25:18 [Warning] Voltage out of range (lower non-recoverable) at Voltage 2
+2026-08-16 09:31:12 [Critical] Physical drive 4 failure detected

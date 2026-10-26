@@ -6,7 +6,7 @@
  * 断言全部基于 samples/ 下的 11 个样例文件（它们就是"验收标准"）。
  */
 
-import { test } from 'node:test';
+import { test as nodeTest } from 'node:test';
 import assert from 'node:assert/strict';
 import { promises as fsp } from 'node:fs';
 import { existsSync } from 'node:fs';
@@ -81,6 +81,46 @@ function ruleIds(analysis) {
     for (const extra of finding.secondary || []) ids.add(extra);
   }
   return ids;
+}
+
+/* ───────── 样例自检：缺样例时点名 + skip，而不是让整套断言莫名全红 ─────────
+
+   samples/ 是"验收标准"，也是版本控制资产。被误删/打包丢失时，以前的表现是
+   十几个测试同时红、报错却是 "Cannot read properties of undefined"，很难定位。
+   这里从每个测试函数自身的源码里认出它引用的样例文件名：缺哪个就只 skip 哪几个，
+   并在 stderr 明确列出缺失清单和恢复办法。 */
+
+const SAMPLE_FILE_REF = /['"]([\w.-]+\.(?:log|txt|json|html|bin|zip))['"]/g;
+const EXPECTED_SAMPLES = [...new Set([...Object.keys(EXPECT), 'ibmc-onekey-collect.zip'])];
+const MISSING_SAMPLES = EXPECTED_SAMPLES.filter((name) => !existsSync(path.join(SAMPLES, name)));
+
+/** 该测试要用到哪些不存在的样例；不需要样例时返回 false（照常执行）。 */
+function skipReasonFor(fn) {
+  if (MISSING_SAMPLES.length === 0) return false;
+  const source = fn.toString();
+  const referenced = [...source.matchAll(SAMPLE_FILE_REF)].map((match) => match[1]);
+  const gone = [...new Set(referenced)].filter((name) => MISSING_SAMPLES.includes(name));
+  if (gone.length > 0) return `samples/ 缺样例：${gone.join(', ')}（git checkout -- samples 恢复）`;
+  // 遍历 EXPECT 的测试（品牌识别 / 规则命中）体里没有字面文件名，但它们依赖全部样例
+  if (/Object\.entries\(EXPECT\)|analyzeFile\(\s*[A-Za-z_$]/.test(source)) {
+    return `依赖全部样例，缺 ${MISSING_SAMPLES.length} 个：${MISSING_SAMPLES.join(', ')}（git checkout -- samples 恢复）`;
+  }
+  if (/\bSAMPLES\b/.test(source)) {
+    return `samples/ 不完整，缺 ${MISSING_SAMPLES.length} 个：${MISSING_SAMPLES.join(', ')}（git checkout -- samples 恢复）`;
+  }
+  return false;
+}
+
+const test = (name, ...rest) => {
+  const fn = rest.pop();
+  const options = rest.length > 0 ? rest[0] : {};
+  return nodeTest(name, { ...options, skip: skipReasonFor(fn) ?? options.skip }, fn);
+};
+
+if (MISSING_SAMPLES.length > 0) {
+  console.warn(`\n[样例自检] samples/ 缺 ${MISSING_SAMPLES.length}/${EXPECTED_SAMPLES.length} 个文件，依赖它们的断言会 skip：`);
+  for (const name of MISSING_SAMPLES) console.warn(`  - ${name}`);
+  console.warn('  恢复：git checkout -- samples\n');
 }
 
 test('样例目录：17 个文件都能读出来，压缩包会展开而不是被跳过', async () => {

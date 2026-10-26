@@ -1,0 +1,14 @@
+Integrated Management Log — ProLiant DL380 Gen10
+Product Name: ProLiant DL380 Gen10
+Host Name: proxmox-01
+iLO Firmware Version: 2.90
+System BIOS Version: U30 v2.78
+[09:00:05 08/16/2026] [Critical] Uncorrectable memory error (multi-bit ECC) at DIMM 3
+[09:00:06 08/16/2026] [Critical] Memory training failure: DIMM slot 7 disabled, not detected
+[09:20:41 08/16/2026] [Critical] Power supply failure detected (PSU 2)
+[09:21:02 08/16/2026] [Critical] Fan 4 failure detected (tachometer stopped)
+[09:22:03 08/16/2026] [Critical] CPU temperature upper non-recoverable, throttling engaged
+[09:31:12 08/16/2026] [Critical] Physical drive failure, logical drive 1 degraded
+[10:02:11 08/18/2026] [Critical] PCIe error: AER Uncorrectable (Fatal) reported by PCIe Slot 3
+[10:05:00 08/18/2026] [Warning] PCI slot 5 error detected, device not present
+[03:14:02 08/19/2026] [Critical] Power supply 1: AC lost, system powered off

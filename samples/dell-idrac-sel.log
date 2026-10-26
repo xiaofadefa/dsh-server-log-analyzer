@@ -1,0 +1,8 @@
+Dell PowerEdge R750 iDRAC SEL (ipmitool sel elist)
+1 | 08/16/2026 | 09:00:05 | Memory | Memory | Uncorrectable ECC error at DIMM A1 | Asserted
+2 | 08/16/2026 | 09:20:41 | Power Supply 2 | Power Supply | Power supply failure detected | Asserted
+3 | 08/16/2026 | 09:25:18 | Voltage 1 | Voltage | Voltage out of range (lower critical) | Asserted
+4 | 08/16/2026 | 09:31:12 | Drive 3 | Drive | drive slot 3 fault: drive failure detected | Asserted
+5 | 08/16/2026 | 09:33:40 | RAID Controller | Storage | RAID array degraded, unused drive present in slot 4 | Asserted
+6 | 08/18/2026 | 10:02:11 | Watchdog 2 | Watchdog | Watchdog timer expired | Asserted
+7 | 08/19/2026 | 03:14:02 | Power Supply 1 | Power Supply | Power supply input lost (AC lost) | Asserted

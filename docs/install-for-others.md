@@ -54,7 +54,7 @@ dsh plugin --profile desktop add "https://your-git/dsh-server-log-analyzer.git"
 | --- | --- |
 | 58+ 条硬件规则、12 类故障、跨源关联、报告/基线/对比 | ✅ 随包自带，开箱可用 |
 | 3 个技能（采集清单 / 研判流程 / 处置手册） | ✅ 自动安装到 `$DSH_HOME/skills` |
-| 自带样例（`samples/` 4 份：二进制 SEL、GBK 文本、HTML 导出、Redfish JSON） | ✅ 可直接跑通单文件分析 |
+| 自带样例（`samples/` 17 份：二进制 SEL、GBK 中文导出、HTML 导出、zip 一键收集包、syslog/dmesg 等） | ✅ 可直接跑通全流程 |
 | 厂商**事件码表**（Dell/Lenovo/华为/浪潮手册抽取） | ⚠ **不随包分发**（版权原因）。对方自己下手册后三步导入 |
 | 厂商**操作条目**（命令/界面路径/处理步骤） | ⚠ 同上；但自带 10 条通用取证基线（SEL / RAID 三连 / SMART / 供电 / 散热 / PCIe） |
 
