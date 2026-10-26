@@ -79,11 +79,19 @@
 ### 1. 作为 dsh 插件安装（推荐）
 
 ```bash
-# 在插件源码目录的上一级执行；link: 是软链，改代码后重启 dsh 即生效
-dsh plugin --profile desktop add link:D:\harness\bigplumpfish\dsh-server-log-analyzer
+# 从 GitHub 装（公开仓库，不需要任何账号）
+dsh plugin --profile desktop add github:xiaofadefa/dsh-server-log-analyzer
 
 # 验证补丁层是否进入 profile 树（不需要重启）
 dsh --profile desktop --dump-config | findstr /i server-log-analyzer
+```
+
+> 仓库的 `npm` 同名包暂不可用（包文件上传没成功），请用上面的 git 方式安装。
+
+本地开发时改用软链，改代码后重启 dsh 即生效：
+
+```bash
+dsh plugin --profile desktop add link:D:\dafeiyu\dsh-plugins\dsh-server-log-analyzer
 ```
 
 安装后**重启 dsh**（桌面版退出再打开）：插件行随进程启动注册工具面。
@@ -92,7 +100,7 @@ dsh --profile desktop --dump-config | findstr /i server-log-analyzer
 ### 2. 只当命令行工具用（不装 dsh）
 
 ```bash
-node D:\harness\bigplumpfish\dsh-server-log-analyzer\bin\dsh-hwlog.js analyze .\logs --out report.md
+node <插件目录>\bin\dsh-hwlog.js analyze .\logs --out report.md
 ```
 
 ### 3. 技能单独落地
