@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dsh-server-log-analyzer · DSH 服务器硬件日志研判插件</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem; }
+  h1 { font-size: 1.6rem; margin: 0 0 .4rem; }
+  p.lead { color: #666; margin-top: 0; }
+  h2 { font-size: 1.05rem; margin: 2.2rem 0 .6rem; }
+  code, pre { font-family: ui-monospace, Consolas, monospace; font-size: .88rem; }
+  pre { background: #f5f5f5; padding: .9rem 1rem; border-radius: 8px; overflow-x: auto; }
+  @media (prefers-color-scheme: dark) { pre { background: #1b1b1f; } p.lead { color: #aaa; } }
+  a { color: #2563eb; }
+  ul { padding-left: 1.2rem; }
+</style>
+</head>
+<body>
+<h1>dsh-server-log-analyzer</h1>
+<p class="lead">服务器带外日志（BMC / iDRAC / iLO / iBMC / XCC / IPMI SEL / Redfish）与系统日志的硬件初步研判插件 · DSH bundle</p>
+
+<h2>安装</h2>
+<pre>dsh plugin --profile desktop add dsh-server-log-analyzer</pre>
+<p>或从源码安装：</p>
+<pre>dsh plugin --profile desktop add github:xiaofadefa/dsh-server-log-analyzer</pre>
+
+<h2>作为插件市场索引源</h2>
+<p>DSH → 插件 → 发现 → 添加索引源，填入：</p>
+<pre>https://xiaofadefa.github.io/dsh-server-log-analyzer/index.json</pre>
+
+<h2>链接</h2>
+<ul>
+  <li><a href="https://github.com/xiaofadefa/dsh-server-log-analyzer">源码仓库</a></li>
+  <li><a href="https://github.com/xiaofadefa/dsh-server-log-analyzer#readme">文档 / README</a></li>
+  <li><a href="https://github.com/xiaofadefa/dsh-server-log-analyzer/issues">问题反馈</a></li>
+</ul>
+<p style="margin-top:2.5rem;font-size:.85rem;color:#888">MIT License · 引擎全程本地离线，无网络请求。</p>
+</body>
+</html>

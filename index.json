@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "title": {
+    "en": "YG DSH Plugins",
+    "zh": "YG 的 DSH 插件源"
+  },
+  "description": {
+    "en": "Third-party DSH plugin index maintained by YG.",
+    "zh": "YG 维护的第三方 DSH 插件索引。"
+  },
+  "metadata": {
+    "categories": {
+      "observability": {
+        "title": {
+          "en": "Observability",
+          "zh": "可观测与诊断"
+        }
+      },
+      "capabilities": {
+        "title": {
+          "en": "Capabilities",
+          "zh": "模型可用能力"
+        }
+      }
+    },
+    "labels": {
+      "server-hardware": {
+        "title": {
+          "en": "Server hardware",
+          "zh": "服务器硬件"
+        }
+      },
+      "log-analysis": {
+        "title": {
+          "en": "Log analysis",
+          "zh": "日志分析"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-server-log-analyzer",
+      "title": {
+        "en": "Server Hardware Log Triage",
+        "zh": "服务器硬件日志研判"
+      },
+      "description": {
+        "en": "BMC/IPMI/iDRAC/iLO hardware log triage: rules, scoring, reports, baselines",
+        "zh": "DSH 插件：服务器带外日志（BMC / iDRAC / iLO / iBMC / XCC / IPMI SEL / Redfish）与系统日志的硬件初步分析与巡检"
+      },
+      "author": "xiaofadefa",
+      "homepage": "https://github.com/xiaofadefa/dsh-server-log-analyzer#readme",
+      "repository": {
+        "url": "https://github.com/xiaofadefa/dsh-server-log-analyzer"
+      },
+      "metadata": {
+        "category": "observability",
+        "keywords": [
+          "dsh",
+          "dsh-plugin",
+          "server",
+          "bmc",
+          "ipmi",
+          "sel",
+          "redfish",
+          "idrac",
+          "ilo",
+          "ibmc",
+          "xcc",
+          "运维"
+        ],
+        "labels": [
+          "server-hardware"
+        ]
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "publishTimestamp": 1793018988,
+          "source": {
+            "type": "npm"
+          }
+        }
+      ]
+    }
+  ]
+}
